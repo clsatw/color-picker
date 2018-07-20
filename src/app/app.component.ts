@@ -22,14 +22,16 @@ export class AppComponent {
     // this.interval = 3000;
   }
 
-  setLedColor(color: string): Object {
+  setLedColor(color: string): number {
     let hexCol: number;
+
+    /*
     let rgb = {
       r: '',
       g: '',
       b: '',
     };
-    let rgba: Rgba;
+    */
     hexCol = parseInt(color.slice(1), 16);
     this.mqtt.callArestWithParam('ledColor', hexCol);
     return hexCol;
@@ -54,6 +56,7 @@ export class AppComponent {
       this.btnText = 'Stop Random Color';
       this.timer = setInterval(() => {
 
+        // tslint:disable-next-line:no-bitwise
         color = '#' + ('00000' + (Math.random() * 16777216 << 0).toString(16)).substr(-6);
         // color -= 1000;
         console.log('color: ', color);
