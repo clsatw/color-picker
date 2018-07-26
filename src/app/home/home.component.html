@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <h1>{{title}}</h1>
+  <span [style.background]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpPresetColors]="['#000', '#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f']"
+    [(colorPicker)]="color" (colorPickerChange)="setLedColor($event)">
+  </span>
+  </div>
+  {{color}}
+  <br>
+
+  <div>
+  <h3> Change LED's color every {{interval/1000}} seconds </h3>
+  <input type="range" min=1000 max='60000' step='1000' [(ngModel)]='interval'>
+  <br><br>
+  <button (click)='randomColor()'>Random Color</button>
+  </div>
