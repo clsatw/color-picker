@@ -121,5 +121,8 @@
       }
     }
   },
-  "defaultProject": "color-picker"
+  "defaultProject": "color-picker",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }

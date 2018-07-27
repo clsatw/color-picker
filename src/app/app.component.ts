@@ -7,6 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'IoT LED';
+  /*
+  private _title = 'IoT LED';
+  public get title() {
+    return this._title;
+  }
+  public set title(value) {
+    this._title = value;
+  }
   constructor() { }
+  */
 }
+
 

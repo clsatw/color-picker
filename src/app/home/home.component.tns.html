@@ -1,0 +1,29 @@
+<ActionBar title="IoT Led">
+</ActionBar>
+
+<StackLayout>
+  <Button class='btn btn-primary btn-active' text='Random color' (tap)='randomColor()'></Button>
+  <Button class='btn btn-warn btn-active' text='Pick a color' (tap)='showARGBPicker()'></Button>
+  <Button class='btn btn-outline btn-active' text='Turn off Led' (tap)='setLedColor(0)'></Button>
+  <Label text={{selectedColor}} class="message" textWrap="true"></Label>
+</StackLayout>
+
+
+<!--
+  <stackLayout>
+     <Label text="home works" textWrap="true"></Label>
+    <Label text="This is a migrated component" textWrap="true"></Label>
+    <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
+  
+  {{color}}
+  <h3> Change LED's color every {{interval/1000}} seconds </h3>
+  </stackLayout>
+  <br>
+  <div>
+    <input type="range" min=1000 max='60000' step='1000' [(ngModel)]='interval'>
+    <br>
+    <br>
+  </div>
+
+
+-->

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ColorPickerService, Rgba } from 'ngx-color-picker';
+import { ColorPicker } from 'nativescript-color-picker';
 import { MqttProvider } from '../../providers/mqtt/mqtt';
 
 @Component({
@@ -7,24 +8,38 @@ import { MqttProvider } from '../../providers/mqtt/mqtt';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   interval = 3000;
   btnText: string;
   showStyle: boolean;
   timer: any;
   color = '#800880';
   // toggle = false;
+  picker = new ColorPicker();
 
-  public selectedColor: string;
+  // public selectedColor: string;
   constructor(
     private mqtt: MqttProvider,
     public vcRef: ViewContainerRef,
-    private cpService: ColorPickerService
-  ) {}
+    // private cpService: ColorPickerService
+  ) { }
 
-  setLedColor(color: string): number {
-    let hexCol: number;
+  ngOnInit() {
+    this.showARGBPicker();
+  }
 
+  public showARGBPicker() {
+    this.picker.show('#3489db', 'ARGB').then((result) => {
+      console.dir(result);
+      console.log('color int: ' + result);
+      this.setLedColor(result);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  setLedColor(color: any): number {
+    let hexCol: number;   
     /*
     let rgb = {
       r: '',
@@ -32,7 +47,8 @@ export class HomeComponent {
       b: '',
     };
     */
-    hexCol = parseInt(color.slice(1), 16);
+    // hexCol = parseInt(color.slice(1), 16);
+    hexCol = parseInt(color.toString(16), 16);
     this.mqtt.callArestWithParam('ledColor', hexCol);
     return hexCol;
     /*
@@ -56,12 +72,10 @@ export class HomeComponent {
       this.btnText = 'Stop Random Color';
       this.timer = setInterval(() => {
         // tslint:disable-next-line:no-bitwise
-        color =
-          '#' +
-          ('00000' + ((Math.random() * 16777216) << 0).toString(16)).substr(-6);
-        // color -= 1000;
+        // web ver
+        // color = '#' + ('00000' + ((Math.random() * 16777216) << 0).toString(16)).substr(-6);
+        color = (Math.floor(Math.random() * 1677215) + 1);
         console.log('color: ', color);
-        // const d = (Math.floor(Math.random() * 1677215) + 1);
         // +d means force d a number
         // this.color = '#' + (+d).toString(16);
         this.setLedColor(color);
