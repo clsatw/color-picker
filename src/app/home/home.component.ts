@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   public showARGBPicker() {
     this.picker.show('#3489db', 'ARGB').then((result) => {
-      console.dir(result);
+      // console.dir(result);
       console.log('color int: ' + result);
       this.setLedColor(result);
     }).catch((err) => {
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   setLedColor(color: any): number {
-    let hexCol: number;   
+    let hexCol: number;
     /*
     let rgb = {
       r: '',
