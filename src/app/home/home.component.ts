@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { ColorPickerService, Rgba } from 'ngx-color-picker';
+// import { ColorPickerService, Rgba } from 'ngx-color-picker';
 import { ColorPicker } from 'nativescript-color-picker';
+import { Color } from 'tns-core-modules/Color';
 import { MqttProvider } from '../../providers/mqtt/mqtt';
 
 @Component({
@@ -10,8 +11,8 @@ import { MqttProvider } from '../../providers/mqtt/mqtt';
 })
 export class HomeComponent implements OnInit {
   interval = 3000;
-  btnText: string;
-  showStyle: boolean;
+  btnText = 'Random color';
+  showStyle = true;
   timer: any;
   color = '#800880';
   // toggle = false;
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.showARGBPicker();
   }
 
-  public showARGBPicker() {
+  public showARGBPicker(): void {
     this.picker.show('#3489db', 'ARGB').then((result) => {
       // console.dir(result);
       console.log('color int: ' + result);
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  setLedColor(color: any): number {
+  setLedColor(color: number | {}): number {
     let hexCol: number;
     /*
     let rgb = {
@@ -48,7 +49,9 @@ export class HomeComponent implements OnInit {
     };
     */
     // hexCol = parseInt(color.slice(1), 16);
-    hexCol = parseInt(color.toString(16), 16);
+    if (typeof color === 'number') {
+      hexCol = parseInt(color.toString(16), 16);
+    }
     this.mqtt.callArestWithParam('ledColor', hexCol);
     return hexCol;
     /*
@@ -64,7 +67,7 @@ export class HomeComponent implements OnInit {
         */
   }
 
-  randomColor() {
+  randomColor(): void {
     let color; // = 16777215;
 
     this.showStyle = !this.showStyle;

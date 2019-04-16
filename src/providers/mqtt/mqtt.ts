@@ -8,18 +8,19 @@ import { HttpClient } from '@angular/common/http';
 export class MqttProvider {
   device_id = '630206';
   aRestApiKey = '1obqzch8x3e7e626';
+  url = 'https://cloud.arest.io';
   constructor(private http: HttpClient) {
   }
 
   callArest(fnName: string): Observable<any> {
     console.log('fnName: ', fnName);
     // this.msg = fnName; // for css
-    return this.http.get(`https://pro.arest.io/${this.device_id}/${fnName}?key=${this.aRestApiKey}`);
+    return this.http.get(`${this.url}/${this.device_id}/${fnName}?key=${this.aRestApiKey}`);
   }
 
   callArestWithParam(fnName: string, hexCol: number) {
     console.log('params: ', hexCol);
-    return this.http.get(`https://pro.arest.io/${this.device_id}/ledColor?key=${this.aRestApiKey}&params=${hexCol}`)
+    return this.http.get(`${this.url}/${this.device_id}/ledColor?key=${this.aRestApiKey}&params=${hexCol}`)
       // .map(res => res.json())
       .subscribe(console.dir);
   }
@@ -36,7 +37,7 @@ export class MqttProvider {
   gpioCtrl(pin: string, state) {
     // this.http.get(`https://pro.arest.io/${this.device_id}/mode/pin/o?key=${this.aRestApiKey}`)
     //  .subscribe();
-    return this.http.get(`https://pro.arest.io/${this.device_id}/digital/pin/state?key=${this.aRestApiKey}`)
+    return this.http.get(`${this.url}/${this.device_id}/digital/pin/state?key=${this.aRestApiKey}`)
       // .map(res => res.json())
       .subscribe();
   }

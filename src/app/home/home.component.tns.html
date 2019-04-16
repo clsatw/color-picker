@@ -2,7 +2,7 @@
 </ActionBar>
 
 <StackLayout>
-  <Button class='btn btn-primary btn-active' text='Random color' (tap)='randomColor()'></Button>
+  <Button class='btn btn-primary btn-active' text={{btnText}} (tap)='randomColor()'></Button>
   <Button class='btn btn-warn btn-active' text='Pick a color' (tap)='showARGBPicker()'></Button>
   <Button class='btn btn-outline btn-active' text='Turn off Led' (tap)='setLedColor(0)'></Button>
   <Label text={{selectedColor}} class="message" textWrap="true"></Label>

@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { AppRoutingModule } from './app-routing.module.tns';
 import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment';
 import { BarcelonaModule } from './barcelona/barcelona.module';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
