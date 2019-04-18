@@ -1,13 +1,18 @@
 <ActionBar title="IoT Led">
 </ActionBar>
+<page>
+  <StackLayout>
+    <Label text=" Interval in second for randomColor"></Label>
+    <Label row="1" col="0" text="&#xe90b;" textWrap="true" fontSize="15" class="icon"></Label>
+    <Slider row="1" col="1" value="3" [(ngModel)]="interval" minValue="0" maxValue="60"></Slider>
+    <Label row="1" col="2" text="&#xe90b;" textWrap="true" fontSize="20" class="icon"></Label>
 
-<StackLayout>
-  <Button class='btn btn-primary btn-active' text={{btnText}} (tap)='randomColor()'></Button>
-  <Button class='btn btn-warn btn-active' text='Pick a color' (tap)='showARGBPicker()'></Button>
-  <Button class='btn btn-outline btn-active' text='Turn off Led' (tap)='setLedColor(0)'></Button>
-  <Label text={{selectedColor}} class="message" textWrap="true"></Label>
-</StackLayout>
-
+    <Button class='btn btn-primary btn-active' text={{btnText}} (tap)='randomColor()'></Button>
+    <Button class='btn btn-warn btn-active' text='Pick a color' (tap)='showARGBPicker()'></Button>
+    <Button class='btn btn-outline btn-active' text='Turn off Led' (tap)='setLedColor(0)'></Button>
+    <Label text={{selectedColor}} class="message" textWrap="true"></Label>
+  </StackLayout>
+</page>
 
 <!--
   <stackLayout>

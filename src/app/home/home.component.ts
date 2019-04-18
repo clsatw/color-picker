@@ -10,11 +10,11 @@ import { MqttProvider } from '../../providers/mqtt/mqtt';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  interval = 3000;
+  interval = 3; // default 3 seconds
   btnText = 'Random color';
   showStyle = true;
   timer: any;
-  color = '#800880';
+  selectedColor: number;  // color in hex format
   // toggle = false;
   picker = new ColorPicker();
 
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     this.picker.show('#3489db', 'ARGB').then((result) => {
       // console.dir(result);
       console.log('color int: ' + result);
-      this.setLedColor(result);
+      this.selectedColor = this.setLedColor(result);
     }).catch((err) => {
       console.log(err);
     });
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
         // +d means force d a number
         // this.color = '#' + (+d).toString(16);
         this.setLedColor(color);
-      }, this.interval);
+      }, this.interval * 1000); // unit second
     } else {
       this.btnText = 'Random Color';
       clearInterval(this.timer);
